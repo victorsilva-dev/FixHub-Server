@@ -50,23 +50,28 @@ A partir desse momento, na pasta raíz do projeto sera criada uma pasta chamada 
     ├── ..                      # Pasta raíz do projeto
     ├──node_modules             # Pasta de dependências do projeto
     │   └── ...                   # Pastas de cada dependência
+    │
     ├──src                      # Pasta fonte do projeto
     │   ├──app                    # Pasta que contém o núcleo da aplicação
     │   │   ├──controllers          # Pasta dos controladores lógicos da aplicação
     │   │   ├──middlewares          # Pasta dos intermediadores da aplicação
     │   │   └──models               # Pasta dos modelos de dados da aplicação
+    │   │
     │   ├──config                 # Pasta que amazena configurações do projeto, como segredo do token,
     │   │   │                     # credenciais de acesso ao banco de dados, etc...
     │   │   ├──database.js          # Arquivo que exporta credenciais de acesso ao banco de dados
     │   │   └──jwt.js               # Arquivo que exporta um objeto com as configurações do token JWT,
     │   │                           # como segredo de criptografia e período de validade do token
+    │   │
     │   ├──database               # Pasta contendo o núcleo do banco de dados a ser manipulado pelo Sequelize
     │   │   ├──migrations           # Pasta que contém todas as migrações(alterações na estrutura) no banco de dados
     │   │   └──index.js             # Arquivo que exporta classe com o banco de dados configurado, permitindo
     │   │                           # trabalhar com o banco de dados como um objeto
+    │   │
     │   ├──index.js               # Arquivo do ponto de entrada da aplicação, inicializa o servidor
     │   ├──routes.js              # Arquivo com as rotas da aplicação
     │   └──server.js              # Arquivo que exporta uma classe com o servidor da aplicação
+    │
     ├──.editorconfig            # Arquivo utilizado pela extensão EditorConfig, garante homogeneidade textual
     │                           # em todos os arquivos do projeto
     ├──.gitignore               # Arquivo que dispõe todos os arquivos a serem ignorados pelo repositório git
