@@ -55,12 +55,15 @@ A partir desse momento, na pasta raíz do projeto sera criada uma pasta chamada 
     │   │   ├──controllers      # Pasta dos controladores lógicos da aplicação
     │   │   ├──middlewares      # Pasta dos intermediadores da aplicação
     │   │   └──models           # Pasta dos modelos de dados da aplicação
-    │   └──config               # Pasta que amazena configurações do projeto, como segredo do token,
-		│       │                   # credenciais de acesso ao banco de dados, etc...
-    │       ├──database.js      # Arquivo que exporta classe com o banco de dados configurado, permitindo
-    │       │                   # trabalhar com o banco de dados como um objeto instanciado
-    │       └──jwt.js           # Arquivo que exporta um objeto com as configurações do token JWT,
-    │                           # como segredo de criptografia e período de validade do token
+    │   ├──config               # Pasta que amazena configurações do projeto, como segredo do token,
+    │   │   │                   #   credenciais de acesso ao banco de dados, etc...
+    │   │   ├──database.js      # Arquivo que exporta credenciais de acesso ao banco de dados
+    │   │   └──jwt.js           # Arquivo que exporta um objeto com as configurações do token JWT,
+    │   │                       #   como segredo de criptografia e período de validade do token
+    │   ├──database             # Pasta contendo o núcleo do banco de dados a ser manipulado pelo Sequelize
+    │   │   ├──migrations       # Pasta que contém todas as migrações(alterações na estrutura) no banco de dados
+    │   │   └──index.js         # Arquivo que exporta classe com o banco de dados configurado, permitindo
+    │   │                       #   trabalhar com o banco de dados como um objeto instanciado
     └── ...
 
 
