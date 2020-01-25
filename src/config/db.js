@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   dialect: 'mysql',
   host: 'remotemysql.com',
   port: 3306,

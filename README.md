@@ -62,7 +62,7 @@ A partir desse momento, na pasta raíz do projeto sera criada uma pasta chamada 
     │   │
     │   ├──config                 # Pasta que amazena configurações do projeto, como segredo do token,
     │   │   │                     # credenciais de acesso ao banco de dados, etc...
-    │   │   ├──database.js          # Arquivo que exporta credenciais de acesso ao banco de dados
+    │   │   ├──db.js              # Arquivo que exporta credenciais de acesso ao banco de dados
     │   │   └──jwt.js               # Arquivo que exporta um objeto com as configurações do token JWT,
     │   │                             como segredo de criptografia e período de validade do token
     │   │
