@@ -56,7 +56,11 @@ A partir desse momento, na pasta raíz do projeto sera criada uma pasta chamada 
     │   │   ├──middlewares      # Pasta dos intermediadores da aplicação
     │   │   └──models           # Pasta dos modelos de dados da aplicação
     │   └──config               # Pasta que amazena configurações do projeto, como segredo do token,
-		│                           # credenciais de acesso ao banco de dados, etc...
+		│       │                   # credenciais de acesso ao banco de dados, etc...
+    │       ├──database.js      # Arquivo que exporta classe com o banco de dados configurado, permitindo
+    │       │                   # trabalhar com o banco de dados como um objeto instanciado
+    │       └──jwt.js           # Arquivo que exporta um objeto com as configurações do token JWT,
+    │                           # como segredo de criptografia e período de validade do token
     └── ...
 
 
