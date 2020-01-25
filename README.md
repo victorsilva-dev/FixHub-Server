@@ -11,25 +11,25 @@ Para utilizar este projeto alguns pré-requisitos devem ser satisfeitos:
 
 Satisfazendo os pré requisitos acima, baixe os arquivos do repositório clicando em "clonar ou baixar" no canto superior direito da página ou por meio da linha de comando caso possua o GIT instalado em sua máquina:
 
-...
+```
 
 git init
 git clone https://github.com/vsilvasoares1710/Esqueleto-MVC-Node-MySQL-Sequelize
 
-...
+```
 
 Com os arqivos em sua máquina navegue até a pasta raíz do projeto e instale todas as dependências do projeto executando os seguintes comandos:
 
-...javascript
+```javascript
 
 npm install
 npm install --save sequelize
 npm install --save nodemon
 npm install --save sucrase
 
-...
+```
 
-A partir desse momento todas as dependências do projeto estarão devidamente instaladas em sua máquina.
+A partir desse momento, na pasta raíz do projeto sera criada uma pasta chamada node_modules, que todas as dependências do projeto devidamente instaladas em sua máquina além de outras dependências provenientes do Node.js.
 
 ## Dependências Instaladas
 
@@ -47,13 +47,16 @@ A partir desse momento todas as dependências do projeto estarão devidamente in
 ## Estrutura do Projeto
 
     .
-    ├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
+    ├── ..											# Pasta raíz do projeto
+		├── node_modules						# Pasta de dependências do projeto
+    │   └── ...
+    ├── src											# Pasta fonte do projeto
+    │   ├── app									# Pasta que contém o núcleo da aplicação
+    │   │		├── controllers			# Pasta dos controladores lógicos da aplicação
+    │   │		├──	middlewares			# Pasta dos intermediadores da aplicação
+		│   │   └──	models					# Pasta dos modelos de dados da aplicação
+    │   └── config							# Pasta que amazena diversas configurações do projeto, como credenciais do banco de dados, segredo to token, etc...
+    └── ...
 
 
 
