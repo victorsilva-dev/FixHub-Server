@@ -1,0 +1,18 @@
+# pasta node_modules
+/node_modules
+
+# cache de dependencias do yarn e npm
+yarn.lock
+package-lock.json
+
+# log de erros
+yarn-error.log
+
+# rascunhos
+rascunho.html
+rascunho.css
+rascunho.js
+rascunho.json
+rascunho.txt
+rascunho.md
+

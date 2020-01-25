@@ -1,0 +1,24 @@
+{
+  "name": "servidor-fixhub",
+  "version": "1.0.0",
+  "description": "Backend-da-aplicação-fixhub",
+  "main": "index.js",
+  "author": "Grupo-5-Recode-Pro",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "sucrase-node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
+    "sequelize": "^5.21.3",
+    "sucrase": "^3.12.1",
+    "yup": "^0.28.0"
+  }
+}
