@@ -55,7 +55,7 @@ A partir desse momento, na pasta raíz do projeto sera criada uma pasta chamada 
     │   │   ├──controllers      # Pasta dos controladores lógicos da aplicação
     │   │   ├──middlewares      # Pasta dos intermediadores da aplicação
     │   │   └──models           # Pasta dos modelos de dados da aplicação
-    │   └──config               # Pasta que amazena configurações do projeto
+    │   └──config               # Pasta que amazena configurações do projeto, como segredo do token, credenciais de acesso ao banco de dados, etc...
     └── ...
 
 
