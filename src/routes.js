@@ -18,21 +18,27 @@ routes.get(
 //Rota de busca de informações de um profissional para exposição pública
 routes.get("/profissionais/:id", ProfissionaisController.indexOne);
 
-// //ROTAS A SEREM CRIADAS
+//ROTAS EM TESTE
+
+//ROTAS A SEREM CRIADAS
 // //Rota de cadastro do profissional
 // routes.post("/profissionais", ProfissionaisController.store);
 // //Rota de busca de informações de um profissional para exposição privada
 // routes.post("/profissionais/:id", ProfissionaisController.indexOneAuth);
 // //Rota de atualização de dados do profissional
-// routes.patch("/profissionais/:id", ProfissionaisController.update);
+// routes.put("/profissionais/:id", ProfissionaisController.update);
+// //Rota de login do profissional
+// routes.post("/profissionais/entrar", ProfissionaisController.login);
 // //Rota de troca de senha do profissional
 // routes.post("/profissionais/senha", ProfissionaisController.passwordUpdate);
 // //Rota de cadastro de usuários
 // routes.post("/usuarios", UsuariosController.store);
 // //Rota de busca de informações de um usuário para exposição privada
-// routes.post("/usuarios/:id", UsuariosController.indexOneAuth);
+// routes.post("/usuarios/:id", UsuariosController.index);
 // //Rota de atualização de dados do usuário
-// routes.patch("/usuarios/:id", UsuariosController.update);
+// routes.put("/usuarios/:id", UsuariosController.update);
+// //Rota de login do usuário
+// routes.post("/usuarios/entrar", UsuariosController.login);
 // //Rota de troca de senha do profissional
 // routes.post("/usuarios/senha", UsuariosController.passwordUpdate);
 // //Rota de criação de review
@@ -40,6 +46,6 @@ routes.get("/profissionais/:id", ProfissionaisController.indexOne);
 // //Rota de busca de informações sobre review
 // routes.get("/usuarios/avaliacoes/:id", AvaliacoesController.index);
 // //Rota de atualização de review
-// routes.patch("/usuarios/avaliacoes/id", AvaliacoesController.update);
+// routes.put("/usuarios/avaliacoes/id", AvaliacoesController.update);
 
 export default routes;

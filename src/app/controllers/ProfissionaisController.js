@@ -177,6 +177,10 @@ class ProfissionaisController {
 		};
 		return res.json(profissional);
 	}
+
+	async store(req, res) {
+		
+	}
 }
 
 export default new ProfissionaisController();
