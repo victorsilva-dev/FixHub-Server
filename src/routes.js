@@ -43,9 +43,5 @@ routes.get("/profissionais/:id", ProfissionaisController.indexOne);
 // routes.post("/usuarios/senha", UsuariosController.passwordUpdate);
 // //Rota de criação de review
 // routes.post("/usuarios/avaliacoes", AvaliacoesController.store);
-// //Rota de busca de informações sobre review
-// routes.get("/usuarios/avaliacoes/:id", AvaliacoesController.index);
-// //Rota de atualização de review
-// routes.put("/usuarios/avaliacoes/id", AvaliacoesController.update);
 
 export default routes;
