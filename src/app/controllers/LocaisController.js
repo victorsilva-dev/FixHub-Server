@@ -4,7 +4,7 @@ import locais from "../../libraries/bairros";
 class LocaisController {
 	async index(req, res) {
 
-		res.send(locais)
+		res.json(locais)
 	}
 }
 
