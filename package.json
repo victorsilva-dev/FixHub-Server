@@ -2,7 +2,7 @@
   "name": "servidor-fixhub",
   "version": "1.0.0",
   "description": "Backend-da-aplicação-fixhub",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "Grupo-5-Recode-Pro",
   "license": "MIT",
   "scripts": {
@@ -17,11 +17,11 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.3",
+    "sucrase": "^3.12.1",
     "yup": "^0.28.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2",
-    "sequelize-cli": "^5.5.1",
-    "sucrase": "^3.12.1"
+    "sequelize-cli": "^5.5.1"
   }
 }

@@ -22,7 +22,7 @@ class Planos extends Model {
 			},
 			{
 				sequelize,
-				freezeTableName: true // essa opção impede que o sequelize pluralize as tabelas. 
+				freezeTableName: true // essa opção impede que o sequelize pluralize as tabelas.
 			}
 		);
 	}
