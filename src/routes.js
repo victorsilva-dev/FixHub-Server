@@ -1,13 +1,16 @@
 import { Router } from "express";
-import ProfissionaisController from "./app/controllers/ProfissionaisController";
 import TagsController from "./app/controllers/TagsController";
 import PlanosController from "./app/controllers/PlanosController";
+import LocaisController from "./app/controllers/LocaisController";
+import ProfissionaisController from "./app/controllers/ProfissionaisController";
 
 const routes = Router();
 
 //ROTAS EM PERFEITO FUNCIONAMENTO
 //Rota de Busca dos filtros para pesquisa e cadastro de profisionais
 routes.get("/filtros", TagsController.index);
+//Rota para exposição dos estados, cidades e bairros
+routes.get("/locais", LocaisController.index)
 //Rota de Busca de planos de planos pagos pelos profissionais. Implementação de funcionalidade futura
 routes.get("/planos/:id_profissional", PlanosController.index);
 //Rota de pesquisa por profissionais
