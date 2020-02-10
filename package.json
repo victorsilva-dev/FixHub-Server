@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "prestart": "npm install",
     "start": "yarn run sucrase-node src/index.js"
   },
   "dependencies": {
