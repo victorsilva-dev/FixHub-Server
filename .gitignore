@@ -1,8 +1,7 @@
 # pasta node_modules
 /node_modules
 
-# cache de dependencias do yarn e npm
-package-lock.json
+
 
 # log de erros
 yarn-error.log
