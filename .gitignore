@@ -2,7 +2,6 @@
 /node_modules
 
 # cache de dependencias do yarn e npm
-yarn.lock
 package-lock.json
 
 # log de erros
