@@ -15,7 +15,7 @@ routes.get("/locais", LocaisController.index)
 routes.get("/planos/:id_profissional", PlanosController.index);
 //Rota de pesquisa por profissionais
 routes.get(
-	"/profissionais/:bairros/:tags/:pesquisa/:page",
+	"/profissionais/:estado/:cidade/:bairros/:tags/:pesquisa/:page",
 	ProfissionaisController.indexAll
 );
 //Rota de busca de informações de um profissional para exposição pública

@@ -8,12 +8,17 @@ class ProfissionaisController {
 		} else {
 			var bairros = req.params.bairros.split(",");
 		}
+		const { estado, cidade } = req.params
 
 		if (bairros.length > 0) {
 			var prestadores = await Profissionais.findAll({
 				where: {
-					bairro: {
-						[Op.or]: bairros
+					[Op.and]: {
+						estado,
+						cidade,
+						bairro: {
+							[Op.or]: bairros
+						}
 					}
 				}
 			});
@@ -179,7 +184,7 @@ class ProfissionaisController {
 	}
 
 	async store(req, res) {
-		
+
 	}
 }
 

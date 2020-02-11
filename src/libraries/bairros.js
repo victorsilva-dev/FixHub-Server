@@ -1,7 +1,7 @@
 export default {
 	estados: [
 		{
-			UF: "SP",
+			uf: "SP",
 			cidades: [
 				{
 					nome: "São Paulo",
