@@ -184,9 +184,59 @@ class ProfissionaisController {
 	}
 
 	async store(req, res) {
+		const profissionalExiste = await Profissionais.findOne({
+			where:{email: req.body.email}
+		});
+
+		if (profissionalExiste) {
+			return res.status(400).json({ erro: 'Identificamos que já existe um cadastro com esse E-mail e/ou CPF/CNPJ' });
+		}
+
+		const {
+			id,
+			nome,
+			email,
+			cpf_cnpj,
+			senha,
+			estado,
+			bairro,
+			cidade,
+			cep,
+			endereco,
+			numero,
+			celular,
+			telefone,
+			whatsapp,
+			text_anuncio,
+			tags,
+			foto,
+			imagens
+		} = await Profissionais.create(req.body);
+
+		return res.status(200).json({
+			id,
+			nome,
+			email,
+			cpf_cnpj,
+			senha,
+			estado,
+			bairro,
+			cidade,
+			cep,
+			cpf_cnpj,
+			endereco,
+			numero,
+			celular,
+			telefone,
+			whatsapp,
+			text_anuncio,
+			tags,
+			foto,
+			imagens
+		});
+	}
 
 	}
-}
 
 export default new ProfissionaisController();
 

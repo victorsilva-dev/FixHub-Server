@@ -7,7 +7,7 @@ class Profissionais extends Model {
 				nome: {
 					type: DataTypes.STRING,
 					validate: {
-						notEmply: true, //não permite campo vazio
+
 						len: [3, 70], // determina a quantidade minima e maxima de caracteres
 						isAlpha: true // permite apenas letras,
 					}
@@ -16,21 +16,21 @@ class Profissionais extends Model {
 					type: DataTypes.STRING,
 					validate: {
 						isEmail: true,
-						notEmply: true //não permite campo vazio
+
 					}
 				},
 				cpf_cnpj: {
 					type: DataTypes.STRING,
 					validate: {
-						len: [11, 18], // determina a quantidade minima e maxima de caracteres
-						notEmply: true //não permite campo vazio
+						len: [11, 18] // determina a quantidade minima e maxima de caracteres
+
 					},
 				},
 				senha: {
 					type: DataTypes.STRING,
 					validate: {
-						len: [6, 10], // determina a quantidade minima e maxima de caracteres
-						notEmply: true //não permite campo vazio
+						len: [6, 10] // determina a quantidade minima e maxima de caracteres
+
 					}
 				},
 				estado: {
@@ -42,7 +42,7 @@ class Profissionais extends Model {
 				cidade: {
 					type: DataTypes.STRING,
 					validate: {
-						notEmply: true, //não permite campo vazio
+
 						len: [3, 30], // determina a quantidade minima e maxima de caracteres
 						isAlpha: true // permite apenas letras,
 					}
@@ -50,7 +50,7 @@ class Profissionais extends Model {
 				bairro: {
 					type: DataTypes.STRING,
 					validate: {
-						notEmply: true, //não permite campo vazio
+
 						len: [3, 30] // determina a quantidade minima e maxima de caracteres
 					}
 				},
@@ -60,7 +60,7 @@ class Profissionais extends Model {
 				celular: {
 					type: DataTypes.STRING,
 					validate: {
-						notEmply: true, //não permite campo vazio
+
 						len: [0, 14] // determina a quantidade minima e maxima de caracteres
 					}
 				},
