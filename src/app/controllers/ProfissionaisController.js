@@ -36,13 +36,13 @@ class ProfissionaisController {
 					texto_anuncio,
 					anuncio_pago
 				} = profissional;
-				// console.log(tags);
+				console.log(typeof JSON.parse(tags));
 
 				const prestador = {
 					id,
 					nome,
 					foto,
-					tags,
+					tags: JSON.parse(tags),
 					anuncio: {
 						texto: texto_anuncio,
 						anuncioPago: anuncio_pago
