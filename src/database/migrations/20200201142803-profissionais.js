@@ -38,8 +38,7 @@ module.exports = {
 				allowNull: false
 			},
 			cep: {
-				type: Sequelize.STRING,
-				allowNull: false
+				type: Sequelize.STRING
 			},
 			endereco: {
 				type: Sequelize.STRING
@@ -66,18 +65,17 @@ module.exports = {
 			site: {
 				type: Sequelize.STRING
 			},
-			text_anuncio: {
+			texto_anuncio: {
 				type: Sequelize.TEXT
 			},
 			tags: {
-				type: Sequelize.JSON,
-				allowNull: false
+				type: Sequelize.TEXT
 			},
 			foto: {
-				type: Sequelize.JSON
+				type: Sequelize.TEXT
 			},
 			imagens: {
-				type: Sequelize.JSON
+				type: Sequelize.TEXT
 			},
 			created_at: {
 				type: Sequelize.DATE,

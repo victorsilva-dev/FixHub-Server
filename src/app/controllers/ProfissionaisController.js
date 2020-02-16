@@ -4,11 +4,11 @@ import { Op } from "sequelize";
 class ProfissionaisController {
 	async indexAll(req, res) {
 		if (req.params.bairros === "_") {
-			var bairros = ["-"];
+			var bairros = [];
 		} else {
 			var bairros = req.params.bairros.split(",");
 		}
-		const { estado, cidade } = req.params
+		const { estado, cidade } = req.params;
 
 		if (bairros.length > 0) {
 			var prestadores = await Profissionais.findAll({
@@ -33,10 +33,10 @@ class ProfissionaisController {
 					nome,
 					foto,
 					tags,
-					text_anuncio,
+					texto_anuncio,
 					anuncio_pago
 				} = profissional;
-				console.log(tags);
+				// console.log(tags);
 
 				const prestador = {
 					id,
@@ -44,7 +44,7 @@ class ProfissionaisController {
 					foto,
 					tags,
 					anuncio: {
-						texto: text_anuncio,
+						texto: texto_anuncio,
 						anuncioPago: anuncio_pago
 					}
 				};
@@ -122,16 +122,16 @@ class ProfissionaisController {
 			info: { paginas, profissionaisEncontrados: prestadoresFiltrados.length },
 			tags
 		};
-		console.log(resumoPesquisa);
-		return res.json(resumoPesquisa);
+		// console.log(resumoPesquisa);
+		return res.status(200).json(resumoPesquisa);
 	}
 
 	async indexOne(req, res) {
 		const profissionalEspecífico = await Profissionais.findOne({
 			where: { id: req.params.id }
 		});
-		if (profissionalEspecífico === null){
-			return res.json(null)
+		if (profissionalEspecífico === null) {
+			return res.status(404).json(null);
 		}
 		const {
 			id,
@@ -148,21 +148,21 @@ class ProfissionaisController {
 			cidade,
 			estado,
 			tags,
-			fotos,
-			text_anuncio,
+			imagens,
+			texto_anuncio,
 			anuncio_pago
 		} = profissionalEspecífico;
 		const profissional = {
 			id,
 			nome,
-			icone: foto,
+			icone: JSON.parse(foto),
 			contato: {
 				celular,
 				telefone,
 				whatsapp,
 				email
 			},
-			tags,
+			tags: JSON.parse(tags),
 			localização: {
 				endereço: null,
 				bairro,
@@ -175,68 +175,66 @@ class ProfissionaisController {
 				site_oficial
 			},
 			anuncio: {
-				texto: text_anuncio,
-				imagens: fotos,
+				texto: texto_anuncio,
+				imagens: JSON.parse(imagens),
 				anuncioPago: anuncio_pago
 			}
 		};
-		return res.json(profissional);
+		return res.status(200).json(profissional);
 	}
 
 	async store(req, res) {
-		const profissionalExiste = await Profissionais.findOne({
-			where:{email: req.body.email}
-		});
-
-		if (profissionalExiste) {
-			return res.status(400).json({ erro: 'Identificamos que já existe um cadastro com esse E-mail e/ou CPF/CNPJ' });
+		if (
+			!req.body.nome ||
+			// !req.body.email ||
+			!req.body.cpf_cnpj ||
+			!req.body.senha ||
+			!req.body.estado ||
+			!req.body.bairro ||
+			!req.body.cidade ||
+			!req.body.celular
+		) {
+			return res.status(400).json({
+				erro:
+					"Faltam dados para a realização do cadastro. Nome, email, cpf ou cnpj, senha, estado, bairro, cidade, cep, celular e pelo menos uma tag/categoria são os requisitos mínimos para a realização do cadastro"
+			});
 		}
 
-		const {
-			id,
-			nome,
-			email,
-			cpf_cnpj,
-			senha,
-			estado,
-			bairro,
-			cidade,
-			cep,
-			endereco,
-			numero,
-			celular,
-			telefone,
-			whatsapp,
-			text_anuncio,
-			tags,
-			foto,
-			imagens
-		} = await Profissionais.create(req.body);
+		const profissionalExisteEmail = await Profissionais.findOne({
+			where: { email: req.body.email }
+		});
+		if (profissionalExisteEmail) {
+			return res.status(400).json({
+				erro:
+					"Identificamos que já existe um cadastro com esse E-mail"
+			});
+		}
+
+		const profissionalExisteDocumento = await Profissionais.findOne({
+			where: { cpf_cnpj: req.body.cpf_cnpj }
+		});
+		if (profissionalExisteDocumento) {
+			return res.status(400).json({
+				erro:
+					"Identificamos que já existe um cadastro com esse CPF/CNPJ"
+			});
+		}
+
+		try {
+			var { id } = await Profissionais.create(req.body);
+		} catch (err) {
+			const mensagensDeErro = [];
+			err.errors.map(erro => {
+				mensagensDeErro.push(erro.message);
+			});
+			return res.status(400).json({ erro: mensagensDeErro });
+		}
 
 		return res.status(200).json({
-			id,
-			nome,
-			email,
-			cpf_cnpj,
-			senha,
-			estado,
-			bairro,
-			cidade,
-			cep,
-			cpf_cnpj,
-			endereco,
-			numero,
-			celular,
-			telefone,
-			whatsapp,
-			text_anuncio,
-			tags,
-			foto,
-			imagens
+			id
 		});
 	}
-
-	}
+}
 
 export default new ProfissionaisController();
 

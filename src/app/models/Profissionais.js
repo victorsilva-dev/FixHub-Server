@@ -6,51 +6,58 @@ class Profissionais extends Model {
 			{
 				nome: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
-
+						notEmpty: true, //não permite campo vazio
 						len: [3, 70], // determina a quantidade minima e maxima de caracteres
 						isAlpha: true // permite apenas letras,
 					}
 				},
 				email: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
 						isEmail: true,
-
+						notEmpty: true //não permite campo vazio
 					}
 				},
 				cpf_cnpj: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
-						len: [11, 18] // determina a quantidade minima e maxima de caracteres
-
+						len: [11, 18], // determina a quantidade minima e maxima de caracteres
+						notEmpty: true //não permite campo vazio
 					},
 				},
 				senha: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
-						len: [6, 10] // determina a quantidade minima e maxima de caracteres
-
+						len: [6, 10], // determina a quantidade minima e maxima de caracteres
+						notEmpty: true //não permite campo vazio
 					}
 				},
 				estado: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
 						len: [2, 2] // determina a quantidade minima e maxima de caracteres
 					}
 				},
 				cidade: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
-
+						notEmpty: true, //não permite campo vazio
 						len: [3, 30], // determina a quantidade minima e maxima de caracteres
 						isAlpha: true // permite apenas letras,
 					}
 				},
 				bairro: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
-
+						notEmpty: true, //não permite campo vazio
 						len: [3, 30] // determina a quantidade minima e maxima de caracteres
 					}
 				},
@@ -59,9 +66,10 @@ class Profissionais extends Model {
 				numero: DataTypes.STRING,
 				celular: {
 					type: DataTypes.STRING,
+					allowNull: false,
 					validate: {
-
-						len: [0, 14] // determina a quantidade minima e maxima de caracteres
+						notEmpty: true, //não permite campo vazio
+						len: [9, 14] // determina a quantidade minima e maxima de caracteres
 					}
 				},
 				telefone: {
@@ -94,15 +102,15 @@ class Profissionais extends Model {
 						len: [0, 70] // determina a quantidade minima e maxima de caracteres
 					}
 				},
-				text_anuncio: {
+				texto_anuncio: {
 					type: DataTypes.TEXT,
 					validate: {
-						len: [0, 500] // determina a quantidade minima e maxima de caracteres
+						len: [0, 2000] // determina a quantidade minima e maxima de caracteres
 					}
 				},
 				tags: DataTypes.JSON,
-				foto: DataTypes.JSON,
-				imagens: DataTypes.JSON
+				foto: DataTypes.TEXT,
+				imagens: DataTypes.TEXT
 			},
 			{
 				sequelize,
