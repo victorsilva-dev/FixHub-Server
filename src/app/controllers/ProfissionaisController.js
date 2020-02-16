@@ -4,7 +4,7 @@ import { Op } from "sequelize";
 class ProfissionaisController {
 	async indexAll(req, res) {
 		if (req.params.bairros === "_") {
-			var bairros = [];
+			var bairros = ["-"];
 		} else {
 			var bairros = req.params.bairros.split(",");
 		}
