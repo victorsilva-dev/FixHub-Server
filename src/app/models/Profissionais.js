@@ -52,7 +52,7 @@ class Profissionais extends Model {
 					allowNull: false,
 					validate: {
 						len: {
-							args: [6, 32],
+							args: [2, 2],
 							msg: "O campo 'estado' deve conter de 2 caracteres"
 						},
 						notEmpty: { msg: "O campo 'estado' deve ser preenchido" }
