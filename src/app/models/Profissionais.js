@@ -29,9 +29,14 @@ class Profissionais extends Model {
 					type: DataTypes.STRING,
 					allowNull: false,
 					validate: {
+						is: {
+							args: /([0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2})|([0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2})/,
+							msg:
+								"O campo 'cpf_cnpj' deve seguir o padrão XXX.XXX.XXX-XX para cpf ou XX.XXX.XXX/XXXX-XX para cnpj"
+						},
 						len: {
-							args: [11, 18],
-							msg: "O campo 'cpf/cnpj' deve conter de 11 a 18 caracteres"
+							args: [14, 18],
+							msg: "O campo 'cpf_cnpj' deve conter de 14 a 18 caracteres"
 						},
 						notEmpty: { msg: "O campo 'cpf/cnpj' deve ser preenchido" }
 					}
@@ -51,6 +56,11 @@ class Profissionais extends Model {
 					type: DataTypes.STRING,
 					allowNull: false,
 					validate: {
+						is: {
+							args: /[A-Z]{2}/,
+							msg:
+								"O campo 'estado' deve contar apenas letras alfanuméricas maiúsculas"
+						},
 						len: {
 							args: [2, 2],
 							msg: "O campo 'estado' deve conter de 2 caracteres"
@@ -80,65 +90,177 @@ class Profissionais extends Model {
 						notEmpty: { msg: "O campo 'bairro' deve ser preenchido" }
 					}
 				},
-				cep: DataTypes.STRING,
-				endereco: DataTypes.STRING,
-				numero: DataTypes.STRING,
+				cep: {
+					type: DataTypes.STRING,
+					allowNull: true,
+					validate: {
+						is: {
+							args: /[0-9]{5}\-[0-9]{3}/,
+							msg:
+								"O campo 'cep' deve seguir o padrão XXXXX-XXX caso seja preenchido"
+						},
+						len: {
+							args: [9, 9],
+							msg:
+								"O campo 'cep' deve conter 9 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'cep' não pode receber uma string vazia, deve ser null/undefined nesse caso"
+						}
+					}
+				},
+				endereco: {
+					type: DataTypes.STRING,
+					allowNull: true,
+					validate: {
+						len: {
+							args: [1, 100],
+							msg:
+								"O campo 'endereco' deve conter de 1 a 100 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'endereco' não pode receber uma string vazia, deve ser null/undefined nesse caso"
+						}
+					}
+				},
+				numero: {
+					type: DataTypes.STRING,
+					allowNull: true,
+					validate: {
+						len: {
+							args: [1, 5],
+							msg:
+								"O campo 'numero' deve conter de 1 a 5 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'numero' não pode receber uma string vazia, deve ser null/undefined nesse caso"
+						}
+					}
+				},
 				celular: {
 					type: DataTypes.STRING,
 					allowNull: false,
 					validate: {
+						is: {
+							args: /\([0-9]{2,3}\) [0-9]{5}\-[0-9]{4}/,
+							msg: "O campo 'celular' deve seguir o padrão (XX) XXXXX-XXXX"
+						},
 						len: {
-							args: [9, 14],
-							msg: "O campo 'celular' deve conter de 9 a 14 caracteres"
+							args: [15, 16],
+							msg: "O campo 'celular' deve conter de 15 a 16 caracteres"
 						},
 						notEmpty: { msg: "O campo 'calular' deve ser preenchido" }
 					}
 				},
 				telefone: {
 					type: DataTypes.STRING,
+					allowNull: true,
 					validate: {
+						is: {
+							args: /\([0-9]{2,3}\) [0-9]{4}\-[0-9]{4}/,
+							msg:
+								"O campo 'telefone' deve seguir o padrão (XX) XXXX-XXXX caso seja preenchido"
+						},
 						len: {
-							args: [0, 14],
-							msg: "O campo 'telefone' deve conter até 13 caracteres"
+							args: [14, 15],
+							msg:
+								"O campo 'telefone' deve conter de 14 a 15 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'telefone' não pode receber uma string vazia, deve ser null/undefined nesse caso"
 						}
 					}
 				},
 				whatsapp: {
 					type: DataTypes.STRING,
+					allowNull: true,
 					validate: {
+						is: {
+							args: /\([0-9]{2,3}\) [0-9]{5}\-[0-9]{4}/,
+							msg:
+								"O campo 'whatsapp' deve seguir o padrão (XX) XXXXX-XXXX caso seja preenchido"
+						},
 						len: {
-							args: [0, 14],
-							msg: "O campo 'whatsapp' deve conter até 13 caracteres"
+							args: [15, 16],
+							msg:
+								"O campo 'whatsapp' deve conter de 15 a 16 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'whatsapp' não pode receber uma string vazia, deve ser null/undefined nesse caso"
 						}
 					}
 				},
 				linkedin: {
 					type: DataTypes.STRING,
-					len: {
-						args: [0, 70],
-						msg: "O campo 'linkedin' deve conter até 70 caracteres"
+					allowNull: true,
+					validate: {
+						is: {
+							args: /linkedin\.com\/in\/.{0,}/,
+							msg:
+								"O campo 'linkedin' deve seguir o padrão linkedin.com/in/xxxxxxxxxx..."
+						},
+						len: {
+							args: [0, 70],
+							msg:
+								"O campo 'linkedin' deve conter até 70 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'linkedin' não pode receber uma string vazia, deve ser null/undefined nesse caso"
+						}
 					}
 				},
 				facebook: {
 					type: DataTypes.STRING,
-					len: {
-						args: [0, 70],
-						msg: "O campo 'facebook' deve conter até 70 caracteres"
+					allowNull: true,
+					validate: {
+						is: {
+							args: /facebook\.com\/.{0,}/,
+							msg:
+								"O campo 'facebook' deve seguir o padrão facebook.com/xxxxxxxxxx..."
+						},
+						len: {
+							args: [0, 70],
+							msg:
+								"O campo 'facebook' deve conter até 70 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'facebook' não pode receber uma string vazia, deve ser null/undefined nesse caso"
+						}
 					}
 				},
 				site: {
 					type: DataTypes.STRING,
-					len: {
-						args: [0, 70],
-						msg: "O campo 'site' deve conter até 70 caracteres"
+					allowNull: true,
+					validate: {
+						len: {
+							args: [0, 70],
+							msg:
+								"O campo 'site' deve conter até 70 caracteres, caso seja preenchido"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'site' não pode receber uma string vazia, deve ser null/undefined nesse caso"
+						}
 					}
 				},
 				texto_anuncio: {
 					type: DataTypes.TEXT,
+					allowNull: true,
 					validate: {
 						len: {
 							args: [0, 3000],
 							msg: "O campo 'texto_anuncio' deve conter até 3000 caracteres"
+						},
+						notEmpty: {
+							msg:
+								"O campo 'texto_anuncio' não pode receber uma string vazia, deve ser null/undefined nesse caso"
 						}
 					}
 				},

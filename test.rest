@@ -1,0 +1,17 @@
+POST http://localhost:3000/profissionais
+Content-Type: application/json
+
+{
+"cpf_cnpj": "543.543.543-54",
+"email": "juris@njr.com",
+"nome": "orj´wq",
+"senha": "q46q46q6",
+"estado": "SP",
+"cidade": "Osasco",
+"bairro": "Jardim Piratininga",
+"cep": "46545-485",
+"telefone": "(45) 5465-4678",
+"celular": "(78) 67867-8678",
+"whatsapp": "(78) 67867-8678",
+"tags": ["marketing digital"]
+}
