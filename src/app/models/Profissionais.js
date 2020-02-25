@@ -46,8 +46,8 @@ class Profissionais extends Model {
 					allowNull: false,
 					validate: {
 						len: {
-							args: [6, 32],
-							msg: "O campo 'senha' deve conter de 6 a 32 caracteres"
+							args: [6, 1000],
+							msg: "O campo 'senha' deve conter ao menos 6 caracteres"
 						},
 						notEmpty: { msg: "O campo 'senha' deve ser preenchido" }
 					}
@@ -264,7 +264,30 @@ class Profissionais extends Model {
 						}
 					}
 				},
-				tags: DataTypes.JSON,
+				tags: {
+					type: DataTypes.JSON,
+					allowNull: false,
+					validate: {
+						notEmpty: {
+							msg: "O campo 'tags' não pode receber uma string vazia"
+						},
+						isArray(value) {
+							try {
+								value.map(item => {
+									if (typeof item !== "string") {
+										throw new Error(
+											"O campo 'tags' aceita apenas um array de strings"
+										);
+									}
+								});
+							} catch (error) {
+								throw new Error(
+									"O campo 'tags' aceita apenas um array de strings"
+								);
+							}
+						}
+					}
+				},
 				foto: DataTypes.TEXT,
 				imagens: DataTypes.TEXT
 			},

@@ -2,10 +2,10 @@ POST http://localhost:3000/profissionais
 Content-Type: application/json
 
 {
-"cpf_cnpj": "543.543.543-54",
-"email": "juris@njr.com",
-"nome": "orj´wq",
-"senha": "q46q46q6",
+"cpf_cnpj": "355.476.489-01",
+"email": "ty5eu5t476st@ema7il.com",
+"nome": "test",
+"senha": "testemail",
 "estado": "SP",
 "cidade": "Osasco",
 "bairro": "Jardim Piratininga",
@@ -13,5 +13,14 @@ Content-Type: application/json
 "telefone": "(45) 5465-4678",
 "celular": "(78) 67867-8678",
 "whatsapp": "(78) 67867-8678",
-"tags": ["marketing digital"]
+"tags": ["barbeiro", "encanador", 5]
+}
+
+###
+POST http://localhost:3000/profissionais/entrar
+Content-Type: application/json
+
+{
+"email": "juris@njr1t.com",
+"senha": "q46q4656"
 }

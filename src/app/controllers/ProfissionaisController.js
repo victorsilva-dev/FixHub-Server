@@ -1,5 +1,6 @@
 import Profissionais from "../models/Profissionais";
 import { Op } from "sequelize";
+import bcrypt from "bcrypt"
 
 class ProfissionaisController {
 	async indexAll(req, res) {
@@ -36,7 +37,6 @@ class ProfissionaisController {
 					texto_anuncio,
 					anuncio_pago
 				} = profissional;
-				console.log(typeof JSON.parse(tags));
 
 				const prestador = {
 					id,
@@ -220,8 +220,15 @@ class ProfissionaisController {
 			});
 		}
 
+		let dadosACadastrar = req.body
+
+		const senhaCriptografada = await bcrypt.hash(req.body.senha, 10)
+
+		dadosACadastrar.senha = senhaCriptografada
+
+
 		try {
-			var { id } = await Profissionais.create(req.body);
+			var { id } = await Profissionais.create(dadosACadastrar);
 		} catch (err) {
 			const mensagensDeErro = [];
 			err.errors.map(erro => {

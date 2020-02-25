@@ -3,6 +3,7 @@ import TagsController from "./app/controllers/TagsController";
 import PlanosController from "./app/controllers/PlanosController";
 import LocaisController from "./app/controllers/LocaisController";
 import ProfissionaisController from "./app/controllers/ProfissionaisController";
+import LoginController from "./app/controllers/LoginController";
 
 const routes = Router();
 
@@ -20,12 +21,13 @@ routes.get(
 );
 //Rota de busca de informações de um profissional para exposição pública
 routes.get("/profissionais/:id", ProfissionaisController.indexOne);
-
-//ROTAS EM TESTE
-
-//ROTAS A SEREM CRIADAS
 // //Rota de cadastro do profissional
 routes.post("/profissionais", ProfissionaisController.store);
+
+//ROTAS EM TESTE
+routes.post("/profissionais/entrar", LoginController.login)
+
+//ROTAS A SEREM CRIADAS
 // //Rota de busca de informações de um profissional para exposição privada
 // routes.post("/profissionais/:id", ProfissionaisController.indexOneAuth);
 // //Rota de atualização de dados do profissional
