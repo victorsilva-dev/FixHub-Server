@@ -1,6 +1,6 @@
 import Profissionais from "../models/Profissionais";
 import { Op } from "sequelize";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 class ProfissionaisController {
 	async indexAll(req, res) {
@@ -126,7 +126,7 @@ class ProfissionaisController {
 		return res.status(200).json(resumoPesquisa);
 	}
 
-	async indexOne(req, res) {
+	async indexOnePublic(req, res) {
 		const profissionalEspecífico = await Profissionais.findOne({
 			where: { id: req.params.id }
 		});
@@ -143,7 +143,10 @@ class ProfissionaisController {
 			telefone,
 			facebook,
 			linkedin,
-			site_oficial,
+			site,
+			numero,
+			endereco,
+			cep,
 			bairro,
 			cidade,
 			estado,
@@ -164,15 +167,17 @@ class ProfissionaisController {
 			},
 			tags: JSON.parse(tags),
 			localização: {
-				endereço: null,
 				bairro,
 				cidade,
-				estado
+				estado,
+				numero,
+				endereco,
+				cep
 			},
 			redes_sociais: {
 				facebook,
 				linkedin,
-				site_oficial
+				siteOficial: site
 			},
 			anuncio: {
 				texto: texto_anuncio,
@@ -186,7 +191,7 @@ class ProfissionaisController {
 	async store(req, res) {
 		if (
 			!req.body.nome ||
-			// !req.body.email ||
+			!req.body.email ||
 			!req.body.cpf_cnpj ||
 			!req.body.senha ||
 			!req.body.estado ||
@@ -196,7 +201,7 @@ class ProfissionaisController {
 		) {
 			return res.status(400).json({
 				erro:
-					"Faltam dados para a realização do cadastro. Nome, email, cpf ou cnpj, senha, estado, bairro, cidade, cep, celular e pelo menos uma tag/categoria são os requisitos mínimos para a realização do cadastro"
+					"Faltam dados para a realização do cadastro. Nome, email, cpf ou cnpj, senha, estado, bairro, cidade, celular e pelo menos uma tag/categoria são os requisitos mínimos para a realização do cadastro"
 			});
 		}
 
@@ -205,8 +210,7 @@ class ProfissionaisController {
 		});
 		if (profissionalExisteEmail) {
 			return res.status(400).json({
-				erro:
-					"Identificamos que já existe um cadastro com esse E-mail"
+				erro: "Identificamos que já existe um cadastro com esse E-mail"
 			});
 		}
 
@@ -215,17 +219,15 @@ class ProfissionaisController {
 		});
 		if (profissionalExisteDocumento) {
 			return res.status(400).json({
-				erro:
-					"Identificamos que já existe um cadastro com esse CPF/CNPJ"
+				erro: "Identificamos que já existe um cadastro com esse CPF/CNPJ"
 			});
 		}
 
-		let dadosACadastrar = req.body
+		let dadosACadastrar = req.body;
 
-		const senhaCriptografada = await bcrypt.hash(req.body.senha, 10)
+		const senhaCriptografada = await bcrypt.hash(req.body.senha, 10);
 
-		dadosACadastrar.senha = senhaCriptografada
-
+		dadosACadastrar.senha = senhaCriptografada;
 
 		try {
 			var { id } = await Profissionais.create(dadosACadastrar);
@@ -237,6 +239,122 @@ class ProfissionaisController {
 			return res.status(400).json({ erro: mensagensDeErro });
 		}
 
+		return res.status(200).json({
+			id
+		});
+	}
+
+	async indexOnePrivate(req, res) {
+		const profissionalEspecífico = await Profissionais.findOne({
+			where: { id: req.id }
+		});
+		if (profissionalEspecífico === null) {
+			return res.status(404).json(null);
+		}
+		const {
+			id,
+			nome,
+			cpf_cnpj,
+			foto,
+			email,
+			celular,
+			whatsapp,
+			telefone,
+			facebook,
+			linkedin,
+			site,
+			bairro,
+			cidade,
+			estado,
+			numero,
+			endereco,
+			cep,
+			tags,
+			imagens,
+			texto_anuncio,
+			anuncio_pago
+		} = profissionalEspecífico;
+		const profissional = {
+			id,
+			nome,
+			cpf_cnpj,
+			icone: JSON.parse(foto),
+			contato: {
+				celular,
+				telefone,
+				whatsapp,
+				email
+			},
+			tags: JSON.parse(tags),
+			localização: {
+				bairro,
+				cidade,
+				estado,
+				numero,
+				endereco,
+				cep
+			},
+			redes_sociais: {
+				facebook,
+				linkedin,
+				siteOficial: site
+			},
+			anuncio: {
+				texto: texto_anuncio,
+				imagens: JSON.parse(imagens),
+				anuncioPago: anuncio_pago
+			}
+		};
+		return res.status(200).json(profissional);
+	}
+
+	async update(req, res) {
+		console.log("update foi ativado")
+		if (
+			!req.body.nome ||
+			!req.body.email ||
+			!req.body.cpf_cnpj ||
+			!req.body.estado ||
+			!req.body.bairro ||
+			!req.body.cidade ||
+			!req.body.celular
+		) {
+			return res.status(400).json({
+				erro:
+					"Faltam dados para a atualização do cadastro. Nome, email, cpf ou cnpj, estado, bairro, cidade, celular e pelo menos uma tag/categoria são os requisitos mínimos para a atualização do cadastro"
+			});
+		}
+
+		if (!req.id) {
+			return res.status(401).json({ erro: "Falha da autorização do usuário" });
+		}
+
+		let dadosACadastrar = req.body;
+
+		if (req.body.senha) {
+			console.log("dentro do da checagem de senha")
+			if(req.body.senha.length < 6){
+				return res.status(400).json({ erro: "O campo 'senha' deve conter ao menos 6 caracteres" })
+			}
+			const senhaCriptografada = await bcrypt.hash(req.body.senha, 10);
+
+			dadosACadastrar.senha = senhaCriptografada;
+		}
+
+		const profissional = await Profissionais.findByPk(req.id);
+
+		try {
+			var { id } = await profissional.update(dadosACadastrar);
+			console.log("dentro do try")
+		} catch (err) {
+			console.log("dentro do catch")
+			const mensagensDeErro = [];
+			err.errors.map(erro => {
+				mensagensDeErro.push(erro.message);
+			});
+			return res.status(400).json({ erro: mensagensDeErro });
+		}
+		console.log("deucerto")
 		return res.status(200).json({
 			id
 		});

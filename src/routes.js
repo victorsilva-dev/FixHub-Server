@@ -4,6 +4,7 @@ import PlanosController from "./app/controllers/PlanosController";
 import LocaisController from "./app/controllers/LocaisController";
 import ProfissionaisController from "./app/controllers/ProfissionaisController";
 import LoginController from "./app/controllers/LoginController";
+import LoginMiddleware from "./app/middlewares/LoginMiddleware";
 
 const routes = Router();
 
@@ -20,12 +21,18 @@ routes.get(
 	ProfissionaisController.indexAll
 );
 //Rota de busca de informações de um profissional para exposição pública
-routes.get("/profissionais/:id", ProfissionaisController.indexOne);
-// //Rota de cadastro do profissional
+routes.get("/profissionais/:id", ProfissionaisController.indexOnePublic);
+//Rota de cadastro do profissional
 routes.post("/profissionais", ProfissionaisController.store);
-
-//ROTAS EM TESTE
+//Rota de login
 routes.post("/profissionais/entrar", LoginController.login)
+
+//middleware de autorização do profissional
+routes.use(LoginMiddleware);
+//Rota de busca de dados privados do profissional
+routes.post("/profissionais/dadosCadastrais", ProfissionaisController.indexOnePrivate)
+//Rota de atualização de dados do profissional
+routes.put("/profissionais", ProfissionaisController.update)
 
 //ROTAS A SEREM CRIADAS
 // //Rota de busca de informações de um profissional para exposição privada

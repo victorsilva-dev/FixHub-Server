@@ -13,7 +13,7 @@ Content-Type: application/json
 "telefone": "(45) 5465-4678",
 "celular": "(78) 67867-8678",
 "whatsapp": "(78) 67867-8678",
-"tags": ["barbeiro", "encanador", 5]
+"tags": ["barbeiro", "encanador"]
 }
 
 ###
@@ -21,6 +21,15 @@ POST http://localhost:3000/profissionais/entrar
 Content-Type: application/json
 
 {
-"email": "juris@njr1t.com",
-"senha": "q46q4656"
+"email": "teste@email.com",
+"senha": "contateste"
 }
+
+###
+GET http://localhost:3000/profissionais/69
+Content-Type: application/json
+
+###
+POST http://localhost:3000/profissionais/dadosCadastrais
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjksIm5vbWUiOiJOT01FIERFIFRFU1RFIiwiY3BmX2NucGoiOiIwMDAuMDAwLjAwMC0wMCIsImVtYWlsIjoidGVzdGVAZW1haWwuY29tIiwiaWF0IjoxNTgyNzA2OTE3LCJleHAiOjE1ODI3OTMzMTd9.PajywjYdXBxbUVE5bKKVqSHFV5CSHqCZ6NmjdHq5aRY

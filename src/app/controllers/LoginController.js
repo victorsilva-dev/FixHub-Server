@@ -31,7 +31,7 @@ class LoginController {
 
 				const token = jwt.sign(sessão, jwtSecret, { expiresIn: 86400 });
 				console.log(token);
-				return res.status(200).json(token);
+				return res.status(200).json({token, id});
 			} else {
 				return res.status(404).json({ erro: "Senha Incorreta" });
 			}

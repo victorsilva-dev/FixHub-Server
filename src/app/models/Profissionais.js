@@ -269,7 +269,7 @@ class Profissionais extends Model {
 					allowNull: false,
 					validate: {
 						notEmpty: {
-							msg: "O campo 'tags' não pode receber uma string vazia"
+							msg: "O campo 'tags' não conter pelo menos uma tag"
 						},
 						isArray(value) {
 							try {
