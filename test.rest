@@ -13,7 +13,8 @@ Content-Type: application/json
 "telefone": "(45) 5465-4678",
 "celular": "(78) 67867-8678",
 "whatsapp": "(78) 67867-8678",
-"tags": ["barbeiro", "encanador"]
+"tags": ["barbeiro", "encanador"],
+
 }
 
 ###
