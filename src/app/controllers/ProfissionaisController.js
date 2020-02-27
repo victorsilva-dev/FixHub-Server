@@ -181,7 +181,7 @@ class ProfissionaisController {
 			},
 			anuncio: {
 				texto: texto_anuncio,
-				imagens: imagens,
+				imagens: typeof imagens === "string" ?  JSON.parse(imagens) : imagens,
 				anuncioPago: anuncio_pago
 			}
 		};
@@ -301,7 +301,7 @@ class ProfissionaisController {
 			},
 			anuncio: {
 				texto: texto_anuncio,
-				imagens,
+				imagens: typeof imagens === "string" ?  JSON.parse(imagens) : imagens,
 				anuncioPago: anuncio_pago
 			}
 		};
